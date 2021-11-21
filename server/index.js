@@ -18,5 +18,5 @@ app.use('/admin', admin);
 
 // Start http server
 module.exports.server = server.listen(3001, () => {
-  logger.info('Server is up on port 3001');
+  logger.info('Server is listening on port 3001');
 });
