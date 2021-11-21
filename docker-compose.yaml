@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  server:
+    tty: true
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./server:/workspace
+      - /workspace/node_modules
+    ports:
+      - "3001:3001"
+  client:
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      NODE_OPTIONS: --openssl-legacy-provider
+    ports:
+      - "3000:3000"
+    links:
+      - "server:be"
